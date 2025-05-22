@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html><!DOCTYPE html>
 <html>
 <head>
     <title>Weather App</title>
@@ -19,6 +10,12 @@
 
         <form method="POST">
             <input type="text" name="city" placeholder="Enter city name" required>
+            <label>
+                <input type="radio" name="unit" value="metric" {% if unit == 'metric' %}checked{% endif %}> °C
+            </label>
+            <label>
+                <input type="radio" name="unit" value="imperial" {% if unit == 'imperial' %}checked{% endif %}> °F
+            </label>
             <button type="submit">Get Weather</button>
         </form>
 
@@ -30,7 +27,7 @@
             <div class="weather-container">
                 <h2>{{ weather_data.city }}</h2>
                 <img src="http://openweathermap.org/img/w/{{ weather_data.icon }}.png" alt="Weather icon">
-                <p>Temperature: {{ weather_data.temperature }}°C</p>
+                <p>Temperature: {{ weather_data.temperature }}°{{ weather_data.unit }}</p>
                 <p>Description: {{ weather_data.description|capitalize }}</p>
                 <p>Humidity: {{ weather_data.humidity }}%</p>
                 <p>Wind Speed: {{ weather_data.wind_speed }} m/s</p>
